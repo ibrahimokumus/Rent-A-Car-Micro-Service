@@ -1,0 +1,17 @@
+package com.kodlamaoi.rentalService.business.abstracts;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.kodlamaoi.rentalService.business.request.CreateRentalRequest;
+import com.kodlamaoi.rentalService.business.response.CreateRentalResponse;
+import com.kodlamaoi.rentalService.business.response.GetAllRentalResponse;
+
+@FeignClient(value="ClientRequest", url="http://localhost:9010/rental/api/cars")
+public interface ClientHolder {
+	
+	public List<GetAllRentalResponse> getAll();
+	public CreateRentalResponse add(@RequestBody CreateRentalRequest createRentalRequest)
+}

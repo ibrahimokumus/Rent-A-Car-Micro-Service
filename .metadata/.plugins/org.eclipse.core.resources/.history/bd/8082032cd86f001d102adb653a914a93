@@ -1,0 +1,5 @@
+package com.kodlamaIO.utilities.mapping;
+
+public interface ModelMapperService {
+
+}

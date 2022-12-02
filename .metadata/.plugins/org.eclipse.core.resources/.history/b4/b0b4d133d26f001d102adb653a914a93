@@ -1,0 +1,5 @@
+package com.kodlamaio.inventoryService.dataAccess.abstracts;
+
+public interface CarRepository {
+
+}

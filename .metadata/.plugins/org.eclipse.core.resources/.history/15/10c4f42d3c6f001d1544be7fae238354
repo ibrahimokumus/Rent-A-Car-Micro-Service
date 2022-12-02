@@ -1,0 +1,70 @@
+package com.kodlamaio.kodlamaio.business.concretes;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.kodlamaio.business.abstracts.ApplicantService;
+import com.kodlamaio.kodlamaio.business.abstracts.BlackListService;
+import com.kodlamaio.kodlamaio.business.request.CreateBlackListRequest;
+import com.kodlamaio.kodlamaio.business.request.UpdateBlackListRequest;
+import com.kodlamaio.kodlamaio.business.response.CreateBlackListResponse;
+import com.kodlamaio.kodlamaio.business.response.GetAllBlackListResponse;
+import com.kodlamaio.kodlamaio.business.response.GetBlackListResponse;
+import com.kodlamaio.kodlamaio.business.response.UpdateBlackListResponse;
+import com.kodlamaio.kodlamaio.core.utilities.mapping.ModelMapperService;
+import com.kodlamaio.kodlamaio.core.utilities.results.DataResult;
+import com.kodlamaio.kodlamaio.core.utilities.results.Result;
+import com.kodlamaio.kodlamaio.dataAccess.abstracts.ApplicationRepository;
+import com.kodlamaio.kodlamaio.dataAccess.abstracts.BlackListRepository;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class BlackListManager implements BlackListService{
+
+	private BlackListRepository blacklistRepositories;
+    private ApplicationRepository applicationReposities;
+    private ModelMapperService modelMapperService;
+    private ApplicantService applicantService;
+	@Override
+	public Result delete(int id) {
+		checkIfBlacklistExistById(id);
+        this.blacklistRepositories.deleteById(id);
+        return new SuccessResult(Messages.BlacklistDeleted);
+	}
+
+	@Override
+	public DataResult<CreateBlackListResponse> add(CreateBlackListRequest createBlackListRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<GetAllBlackListResponse>> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<UpdateBlackListResponse> Update(UpdateBlackListRequest updateBlackListRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<GetBlackListResponse> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void checkIfApplicantIsInBlacklist(int applicantId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+}

@@ -1,0 +1,15 @@
+package com.kodlamaoi.common.events;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@data
+
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class RentalCreatedEvent {
+	private String message;
+	private String carId;
+
+}

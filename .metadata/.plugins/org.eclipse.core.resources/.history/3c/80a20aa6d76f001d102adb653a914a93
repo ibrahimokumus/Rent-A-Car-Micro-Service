@@ -1,0 +1,5 @@
+package com.kodlamaIO.utilities.exceptions;
+
+public class BusinessException {
+
+}

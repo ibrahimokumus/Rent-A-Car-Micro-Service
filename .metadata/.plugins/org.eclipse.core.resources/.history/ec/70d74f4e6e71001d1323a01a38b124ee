@@ -1,0 +1,24 @@
+package com.kodlamaoi.rentalService.business.concretes;
+
+
+import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
+import com.kodlamaoi.rentalService.business.abstracts.RentalService;
+import com.kodlamaoi.rentalService.business.request.CreateRentalRequest;
+
+import com.kodlamaoi.rentalService.business.response.CreateRentalResponse;
+import com.kodlamaoi.rentalService.entity.Rental;
+
+
+public class RentalManager implements RentalService{
+
+	private ModelMapperService modelMapperService;
+	@Override
+	public CreateRentalResponse rent(CreateRentalRequest createRentalRequest) {
+		Rental rental=this.modelMapperService.forRequest().map(createRentalRequest, Rental.class);
+		
+		
+		
+		return null;
+	}
+
+}

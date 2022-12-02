@@ -1,0 +1,15 @@
+package com.kodlamaoi.rentalService.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+
+
+@Table(name="rentals")
+public class Retal {
+
+}

@@ -1,0 +1,15 @@
+package com.kodlamaoi.rentalService.business.concretes;
+
+import com.kodlamaoi.rentalService.business.abstracts.RentalService;
+import com.kodlamaoi.rentalService.business.request.RentingCarRequest;
+import com.kodlamaoi.rentalService.business.response.RentingCarResponse;
+
+public class RentalManager implements RentalService{
+
+	@Override
+	public RentingCarResponse rent(RentingCarRequest RentingCarRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

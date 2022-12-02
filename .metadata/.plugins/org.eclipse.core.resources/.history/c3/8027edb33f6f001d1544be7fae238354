@@ -1,0 +1,66 @@
+package com.kodlamaio.kodlamaio.business.concretes;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.kodlamaio.business.abstracts.ApplicantService;
+import com.kodlamaio.kodlamaio.business.abstracts.ApplicationService;
+import com.kodlamaio.kodlamaio.business.abstracts.BlackListService;
+import com.kodlamaio.kodlamaio.business.request.CreateApplicationRequest;
+import com.kodlamaio.kodlamaio.business.request.UpdateApplicationRequest;
+import com.kodlamaio.kodlamaio.business.response.CreateApplicationResponse;
+import com.kodlamaio.kodlamaio.business.response.GetAllApplicationResponses;
+import com.kodlamaio.kodlamaio.business.response.GetApplicationResponses;
+import com.kodlamaio.kodlamaio.business.response.UpdateApplicationResponse;
+import com.kodlamaio.kodlamaio.core.utilities.results.DataResult;
+import com.kodlamaio.kodlamaio.core.utilities.results.Result;
+import com.kodlamaio.kodlamaio.dataAccess.abstracts.ApplicationRepository;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+
+public class ApplicationManager  implements ApplicationService{
+
+	private ApplicationRepository applicationRepository;
+    private BlackListService blackListService;
+    private ApplicantService applicantService;
+    private BootCampService bootCampService;
+    private ModelMapperService modelMapperService;
+	@Override
+	public Result delete(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<CreateApplicationResponse> add(CreateApplicationRequest createApplicationRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<GetAllApplicationResponses>> GetAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<UpdateApplicationResponse> update(UpdateApplicationRequest updateApplicationRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<GetApplicationResponses> getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	
+	
+}

@@ -1,0 +1,12 @@
+package com.kodlamaio.inventoryService.business.get;
+
+public class GetAllCarResponse {
+
+	private String id;
+	private double dailyPrice;
+	private int modelYear;
+	private String description;
+	private String brandName;
+	private String colorName;
+	
+}

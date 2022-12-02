@@ -1,0 +1,28 @@
+package com.kodlamaio.inventoryService.business.request.update;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class UpdateCarRequest {
+	
+	private int id;
+    @Min(0)
+    private double dailyPrice;
+    @Min(2015)
+    private int modelYear;
+    @NotBlank
+    @NotNull
+    private String plate;
+    @Min(1)
+    @Max(3)
+    private int state;
+    @NotBlank
+    @NotNull
+    private String modelId;
+}
+

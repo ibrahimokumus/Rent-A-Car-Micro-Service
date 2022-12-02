@@ -1,0 +1,18 @@
+package com.kodlamaio.kodlamaio.business.abstracts;
+
+import com.kodlamaio.kodlamaio.core.utilities.results.DataResult;
+import com.kodlamaio.kodlamaio.core.utilities.results.Result;
+
+public interface BlackListService {
+	
+	Result delete(int id);
+    DataResult<CreateBlacklistResponse> add(CreateBlacklistRequest createBlacklistRequest);
+    DataResult<List<GetAllBlacklistResponse>> getAll();
+    DataResult<UpdateBlacklistResponse> Update (UpdateBlacklistRequest updateBlacklistRequest);
+    DataResult<GetBlacklistResponse> getById(int id);
+
+    //katılımcının Blacklistte olup olmadığını kontrol etmek için
+    void checkIfApplicantIsInBlacklist(int applicantId);
+	
+
+}

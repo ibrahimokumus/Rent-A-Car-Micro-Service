@@ -1,0 +1,28 @@
+package com.kodlamaio.inventoryService.business.abstracts;
+
+import java.util.List;
+
+import com.kodlamaio.inventoryService.business.request.create.CreateBrandRequest;
+import com.kodlamaio.inventoryService.business.request.update.UpdateBrandRequest;
+import com.kodlamaio.inventoryService.business.response.create.CreateBrandResponse;
+import com.kodlamaio.inventoryService.business.response.get.GetAllBrandResponse;
+import com.kodlamaio.inventoryService.business.response.update.UpdateBrandResponse;
+import com.kodlamaio.kodlamaio.business.request.CreateApplicantRequest;
+import com.kodlamaio.kodlamaio.business.request.UpdateApplicantRequest;
+import com.kodlamaio.kodlamaio.business.response.CreateApplicantResponse;
+import com.kodlamaio.kodlamaio.business.response.GetAllApplicantResponse;
+import com.kodlamaio.kodlamaio.business.response.GetApplicantResponse;
+import com.kodlamaio.kodlamaio.business.response.UpdateApplicantResponse;
+import com.kodlamaio.kodlamaio.core.utilities.results.DataResult;
+import com.kodlamaio.kodlamaio.core.utilities.results.Result;
+
+public interface BrandService {
+
+	List<GetAllBrandResponse> getAll();
+	CreateBrandResponse add(CreateBrandRequest createBrandRequest);
+	void delete(int id);
+	UpdateBrandResponse update(UpdateBrandRequest updateBrandRequest);
+	
+	
+
+}

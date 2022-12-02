@@ -1,0 +1,13 @@
+package com.kodlamaoi.rentalService.kafka;
+
+
+
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Value;
+
+@Configuration
+public class KafkaTopicConfiguration {
+
+	@Value("${spring")
+}

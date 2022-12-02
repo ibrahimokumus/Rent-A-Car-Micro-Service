@@ -1,0 +1,29 @@
+package com.kodlamaio.inventoryService.api;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kodlamaio.inventoryService.business.abstracts.BrandService;
+import com.kodlamaio.inventoryService.business.response.get.GetAllBrandResponse;
+
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping("/api/brands")
+public class BrandController {
+	
+	private BrandService brandService;
+	
+	@GetMapping
+	public List<GetAllBrandResponse> getAll(){
+		return this.brandService.getAll();
+	}
+	
+	
+
+}

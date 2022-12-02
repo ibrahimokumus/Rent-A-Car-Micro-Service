@@ -1,0 +1,7 @@
+package com.kodlamaio.inventoryService.entities;
+
+
+public enum CarState {
+
+	AVAILABLE,NOT_AVAILABLE
+}

@@ -1,0 +1,6 @@
+package com.kodlamaio.inventoryService.business.response.update;
+
+public class UpdateModelResponse {
+	
+
+}

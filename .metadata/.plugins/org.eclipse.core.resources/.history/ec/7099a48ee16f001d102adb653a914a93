@@ -1,0 +1,5 @@
+package com.kodlamaio.inventoryService.business.get;
+
+public class GetAllBrandResponse {
+
+}

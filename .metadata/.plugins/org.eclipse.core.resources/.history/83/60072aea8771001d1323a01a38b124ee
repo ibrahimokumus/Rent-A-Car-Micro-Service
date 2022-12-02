@@ -1,0 +1,12 @@
+package com.kodlamaoi.rentalService.business.response;
+
+import java.time.LocalDateTime;
+
+public class GetAllRentalResponse {
+	
+	private String carId;
+	private LocalDateTime dateStarted;
+	private int rentedForDays;
+	private double dailyPrice;
+	private double totalPrice;
+}
