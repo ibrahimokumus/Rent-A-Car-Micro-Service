@@ -11,10 +11,11 @@ import com.kodlamaio.inventoryService.business.request.create.CreateCarRequest;
 import com.kodlamaio.inventoryService.business.request.update.UpdateCarRequest;
 import com.kodlamaio.inventoryService.business.response.create.CreateCarResponse;
 import com.kodlamaio.inventoryService.business.response.get.GetAllCarResponse;
-import com.kodlamaio.inventoryService.business.response.get.GetCarResponse;
 import com.kodlamaio.inventoryService.business.response.update.UpdateCarResponse;
+import com.kodlamaio.inventoryService.dataAccess.abstracts.CarFilterRepository;
 import com.kodlamaio.inventoryService.dataAccess.abstracts.CarRepository;
 import com.kodlamaio.inventoryService.entities.Car;
+import com.kodlamaio.inventoryService.entities.CarFilter;
 import com.kodlamaoi.common.utilities.exceptions.BusinessException;
 import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
 
@@ -26,6 +27,7 @@ import lombok.AllArgsConstructor;
 public class CarManager implements CarService {
 	private CarRepository carRepository;
 	private ModelMapperService modelMapperService;
+	private CarFilterRepository carFilterRepository;
 
 	// 1->available
 	// 2->notAvailable
@@ -51,6 +53,18 @@ public class CarManager implements CarService {
 		car.setId(UUID.randomUUID().toString());
 
 		this.carRepository.save(car);
+		GetAllCarResponse result = getById(car.getId());
+
+		CarFilter carFilter = new CarFilter();
+		carFilter.setCarId(result.getId());
+		carFilter.setCarDailyPrice(result.getDailyPrice());
+		carFilter.setCarModelYear(result.getModelYear());
+		carFilter.setCarPlate(result.getPlate());
+		carFilter.setCarModelId(result.getModelId());
+		carFilter.setCarModelName(result.getModelName());
+		carFilter.setCarModelBrandId(result.getModelBrandId());
+		carFilter.setCarModelBrandName(result.getModelBrandName());
+		carFilterRepository.insert(carFilter);
 
 		CreateCarResponse createCarResponse = this.modelMapperService.forResponse().map(car, CreateCarResponse.class);
 		return createCarResponse;
@@ -98,6 +112,7 @@ public class CarManager implements CarService {
 		checkIfCarExistById(id);
 
 	}
+	/*
 	@Override
 	public GetCarResponse getById(String id) {
 		checkIfCarExistById(id);
@@ -105,11 +120,17 @@ public class CarManager implements CarService {
 		GetCarResponse response = modelMapperService.forResponse().map(car, GetCarResponse.class);
 
 		return response;
-	}
+	}*/
+	@Override
+    public GetAllCarResponse getById(String carId) {
+        Car car = carRepository.findById(carId);
+        GetAllCarResponse response = modelMapperService.forResponse().map(car, GetAllCarResponse.class);
+        return response;
+    }
 
 	private void checkIfCarExistsByPlate(String plate) {
-		Car currentBrand = this.carRepository.findByPlate(plate);
-		if (currentBrand != null) {
+		Car currentCar = this.carRepository.findByPlate(plate);
+		if (currentCar != null) {
 			throw new BusinessException("CAR.EXISTS");
 		}
 	}

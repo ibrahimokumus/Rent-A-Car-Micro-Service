@@ -8,5 +8,6 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
 	Car findByPlate(String plate);
 	Car findById(String id);
+	//Car getById(String id);
 	//Car changeStateByCarId(int state,String id);
 }

@@ -6,7 +6,6 @@ import com.kodlamaio.inventoryService.business.request.create.CreateCarRequest;
 import com.kodlamaio.inventoryService.business.request.update.UpdateCarRequest;
 import com.kodlamaio.inventoryService.business.response.create.CreateCarResponse;
 import com.kodlamaio.inventoryService.business.response.get.GetAllCarResponse;
-import com.kodlamaio.inventoryService.business.response.get.GetCarResponse;
 import com.kodlamaio.inventoryService.business.response.update.UpdateCarResponse;
 
 public interface CarService {
@@ -18,6 +17,7 @@ public interface CarService {
 	//public void changeState(int state,String id);
 	void changeCarState(String oldCarId,String newCarId);
 	void changeCarState(String id);
-	GetCarResponse getById(String id);
+	GetAllCarResponse getById(String carId);
+	
 	
 }
