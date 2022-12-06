@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.kodlamaio.inventoryService.business.response.get.GetCarResponse;
+
 import com.kodlamaoi.common.events.RentalCreatedEvent;
 import com.kodlamaoi.common.events.RentalUpdatedEvent;
+import com.kodlamaoi.common.request.CreatePaymentRequest;
 import com.kodlamaoi.common.utilities.exceptions.BusinessException;
 import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
 import com.kodlamaoi.rentalService.business.abstracts.RentalService;
@@ -19,6 +20,7 @@ import com.kodlamaoi.rentalService.business.response.CreateRentalResponse;
 import com.kodlamaoi.rentalService.business.response.GetAllRentalResponse;
 import com.kodlamaoi.rentalService.business.response.UpdateRentalResponse;
 import com.kodlamaoi.rentalService.client.CarClient;
+import com.kodlamaoi.rentalService.client.PaymentClient;
 import com.kodlamaoi.rentalService.dataAccess.abstracts.RentalRepository;
 import com.kodlamaoi.rentalService.entity.Rental;
 import com.kodlamaoi.rentalService.kafka.RentalProducer;
@@ -34,14 +36,20 @@ public class RentalManager implements RentalService {
 	private RentalRepository rentalRepository;
 	private RentalProducer rentalProducer;
 	private CarClient carClient;
-
+	private PaymentClient paymentClient;
 	@Override
-	public CreateRentalResponse add(CreateRentalRequest createRentalRequest) {
-			checkIfRentalExistById(createRentalRequest.getCarId());
-			checkIfCarAvailable(createRentalRequest.getCarId());
+	public CreateRentalResponse add(CreateRentalRequest createRentalRequest,CreatePaymentRequest createPaymentRequest) {
+			//checkIfRentalExistById(createRentalRequest.getCarId());
+//			carClient.checkIfCarAvailable(createRentalRequest.getCarId());
+			
 	        Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 	        rental.setId(UUID.randomUUID().toString());
 	        rental.setDateStarted(LocalDateTime.now());
+	        
+	        double totalRentalPrice = rental.getDailyPrice()*rental.getRentedForDays();
+	        rental.setTotalPrice(totalRentalPrice);
+	        paymentClient.checkIfPaymentSuccessful(createPaymentRequest.getCardNumber(),
+	        		createPaymentRequest.getFullName(), createPaymentRequest.getCardCvv(),totalRentalPrice);
 	        Rental rentalCreated = rentalRepository.save(rental);
 
 	        RentalCreatedEvent rentalCreatedEvent = new RentalCreatedEvent();
@@ -90,13 +98,7 @@ public class RentalManager implements RentalService {
 
 	}
 
-	private void checkIfRentalExistById(String id) {
-
-		Rental rental = this.rentalRepository.findById(id);
-		if (rental != null) {
-			throw new BusinessException("Rental Exists!");
-		}
-	}
+	
 
 	private void checkIfRentalNotExistById(String id) {
 
@@ -106,9 +108,5 @@ public class RentalManager implements RentalService {
 		}
 	}
 
-	private void checkIfCarAvailable(String carId) {
-		GetCarResponse response = carClient.checkIfCarAvailable(carId);
-		if (response.getState() != 1)
-			throw new BusinessException("The Car NOT AVAILABLE");
-	}
+	
 }

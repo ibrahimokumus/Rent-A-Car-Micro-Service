@@ -6,9 +6,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.kodlamaoi.common.events.PaymentCreatedEvent;
+import com.kodlamaoi.common.request.CreatePaymentRequest;
 import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
 import com.kodlamaoi.paymentService.business.abstracts.PaymentService;
-import com.kodlamaoi.paymentService.business.request.CreatePaymentRequest;
 
 import lombok.AllArgsConstructor;
 

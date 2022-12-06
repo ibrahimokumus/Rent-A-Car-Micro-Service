@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class CreateRentalResponse {
+	private String id;
 	private String carId;
 	private int rentedForDays;
 	

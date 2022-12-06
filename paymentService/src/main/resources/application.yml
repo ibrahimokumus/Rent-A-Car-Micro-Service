@@ -31,7 +31,6 @@ spring:
     consumer:
       auto-offset-reset: earliest
       bootstrap-servers: localhost:9092
-      group-id: inventory3
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
         spring:
