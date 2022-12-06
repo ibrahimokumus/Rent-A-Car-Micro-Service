@@ -2,30 +2,22 @@ package com.kodlamaoi.carFilterService.business.abstracts;
 
 import java.util.List;
 
-import com.kodlamaoi.carFilterService.business.response.GetAllFilterResponse;
+import com.kodlamaoi.carFilterService.business.response.GetAllCarFiltersResponse;
+
 import com.kodlamaoi.carFilterService.entity.CarFilter;
 
 public interface CarFilterService {
 	
 	
-	List<GetAllFilterResponse> getAll();
-    List<GetAllFilterResponse> getByBrandName(String brandName);
-    List<GetAllFilterResponse> getByModelName(String modelName);
-    List<GetAllFilterResponse> getByPlate(String plate);
-    List<GetAllFilterResponse> searchByPlate(String plate);
-    List<GetAllFilterResponse> searchByBrandName(String brandName);
-    List<GetAllFilterResponse> searchByModelName(String modelName);
-    List<GetAllFilterResponse> getByModelYear(int modelYear);
-    List<GetAllFilterResponse> getByState(int state);
-
-    // Consumer service
+	void save(CarFilter carFilter);
+    void delete(String id);
+    List<GetAllCarFiltersResponse> getAll();
+    List<GetAllCarFiltersResponse> getByBrandName(String brandName);
+    List<GetAllCarFiltersResponse> getByModelName(String modelName);
     CarFilter getByCarId(String id);
     List<CarFilter> getByModelId(String modelId);
     List<CarFilter> getByBrandId(String brandId);
-    void save(CarFilter mongodb);
-    void delete(String id);
-    void deleteAllByBrandId(String brandId);
-    void deleteAllByModelId(String modelId);
+    void deleteByCarId(String id);
 	
 
 }

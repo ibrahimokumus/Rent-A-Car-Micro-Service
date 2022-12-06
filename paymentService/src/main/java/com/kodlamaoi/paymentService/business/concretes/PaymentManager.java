@@ -1,46 +1,56 @@
 package com.kodlamaoi.paymentService.business.concretes;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+import com.kodlamaoi.common.utilities.exceptions.BusinessException;
 import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
 import com.kodlamaoi.paymentService.business.abstracts.PaymentService;
+import com.kodlamaoi.paymentService.business.abstracts.PosService;
 import com.kodlamaoi.paymentService.business.request.CreatePaymentRequest;
+import com.kodlamaoi.paymentService.business.request.PaymentRequest;
 import com.kodlamaoi.paymentService.business.response.CreatePaymentResponse;
-import com.kodlamaoi.paymentService.business.response.GetAllPaymentResponse;
 import com.kodlamaoi.paymentService.dataAccess.PaymentRepository;
 import com.kodlamaoi.paymentService.entity.Payment;
 
-public class PaymentManager implements PaymentService{
+import lombok.AllArgsConstructor;
 
-	private PaymentRepository paymentRepository;
-	private ModelMapperService modelMapperService;
-	@Override
-	public List<GetAllPaymentResponse> getAll() {
-		
-		return paymentRepository.findAll().stream().
-                map(payment -> modelMapperService.forResponse().
-                        map(payment, GetAllPaymentResponse.class)).collect(Collectors.toList());
-	
-		
-		
-	}
 
-	@Override
-	public CreatePaymentResponse add(CreatePaymentRequest createPaymentRequest) {
-		
-		Payment payment = this.modelMapperService.forRequest().map(createPaymentRequest, Payment.class);
+@Service
+@AllArgsConstructor
+public class PaymentManager implements PaymentService {
+    private final PaymentRepository repository;
+    private final ModelMapperService mapper;
+    private final PosService posService;
+
+
+    @Override
+    public CreatePaymentResponse add(CreatePaymentRequest request) {
+        Payment payment = mapper.forRequest().map(request, Payment.class);
         payment.setId(UUID.randomUUID().toString());
-        this.paymentRepository.save(payment);
-        CreatePaymentResponse createPaymentResponse = this.modelMapperService.forResponse().map(payment,
-                CreatePaymentResponse.class);
+        repository.save(payment);
+        CreatePaymentResponse response = mapper.forResponse().map(payment, CreatePaymentResponse.class);
+        return response;
+    }
 
-        return createPaymentResponse;
-		
-		
-	}
-	
-	
+    @Override
+    public void checkIfPaymentSuccessful(PaymentRequest request) {
+        checkPayment(request);
+    }
+
+    private void checkPayment(PaymentRequest request) {
+        if (!repository.existsByCardNumberAndFullNameAndCardCvv(request.getCardNumber(), request.getFullName(), request.getCardCvv())) {
+            throw new BusinessException("Invalid payment");
+        }
+        double balance = repository.findByCardNumber(request.getCardNumber()).getBalance();
+        if (balance < request.getPrice()) {
+            throw new BusinessException("No enough money");
+        }
+        posService.pay(); // Fake payment
+        Payment payment = repository.findByCardNumber(request.getCardNumber());
+        payment.setBalance(balance - request.getPrice());
+        repository.save(payment);
+    }
 
 }

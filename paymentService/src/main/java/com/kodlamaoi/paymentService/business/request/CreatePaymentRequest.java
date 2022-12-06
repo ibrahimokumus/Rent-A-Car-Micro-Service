@@ -1,7 +1,5 @@
 package com.kodlamaoi.paymentService.business.request;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class CreatePaymentRequest {
-	
-	
-	private String rentalId;
-    private String cardNo;
-    private String cardHolder;
-    private int cvv;
-    private LocalDate cardDate;
-    private double balance;
-	
+
+	private String cardNumber;
+	private String fullName;
+	private String cardCvv;
+	private double balance;
 
 }

@@ -1,7 +1,5 @@
 package com.kodlamaoi.paymentService.entity;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,29 +16,15 @@ import lombok.NoArgsConstructor;
 @Table(name = "payments")
 public class Payment {
 
-	
-	@Id
-    @Column(name = "id")
-    private String id;
-
-    @Column(name = "rentalId")
-    private String rentalId;
-
-    @Column(name = "cardNo")
-    private String cardNo;
-
-    @Column(name = "cardHolder")
-    private String cardHolder;
-
-    @Column(name = "cvv")
-    private int cvv;
-
-    @Column(name = "cardDate")
-    private LocalDate cardDate;
-
-    @Column(name = "balance")
-    private double balance;
-
-    @Column(name = "statusPayment")
-    private int statusPayment;
+	 @Id
+	    @Column(name = "id")
+	    private String id;
+	    @Column(name = "full_name")
+	    private String fullName;
+	    @Column(name = "card_number")
+	    private String cardNumber;
+	    @Column(name = "card_cvv")
+	    private String cardCvv;
+	    @Column(name = "balance")
+	    private double balance;
 }

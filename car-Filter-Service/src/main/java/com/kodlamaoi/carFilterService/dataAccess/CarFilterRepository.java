@@ -8,32 +8,12 @@ import com.kodlamaoi.carFilterService.entity.CarFilter;
 
 public interface CarFilterRepository extends MongoRepository<CarFilter, String> {
 
-	List<CarFilter> findByBrandNameIgnoreCase(String brandName);
-
-	List<CarFilter> findByModelNameIgnoreCase(String modelName);
-
-	List<CarFilter> findByPlateIgnoreCase(String plate);
-
-	List<CarFilter> findByPlateContainingIgnoreCase(String plate);
-
 	List<CarFilter> findByBrandNameContainingIgnoreCase(String brandName);
-
-	List<CarFilter> findByModelNameContainingIgnoreCase(String modelName);
-
-	List<CarFilter> findByModelYear(int modelYear);
-
-	List<CarFilter> findByModelId(String modelId);
-
-	List<CarFilter> findByBrandId(String brandId);
-
-	List<CarFilter> findByState(int state);
-
-	CarFilter findByCarId(String carId);
-
-	void deleteByCarId(String carId);
-
-	void deleteAllByBrandId(String brandId);
-
-	void deleteAllByModelId(String modelId);
+    List<CarFilter> findByModelNameContainingIgnoreCase(String brandName);
+    CarFilter findByCarId(String carId);
+    CarFilter findByModelId(String modelId);
+    List<CarFilter> findAllByModelId(String modelId);
+    List<CarFilter> findAllByBrandId(String modelId);
+    void deleteByCarId(String carId);
 
 }

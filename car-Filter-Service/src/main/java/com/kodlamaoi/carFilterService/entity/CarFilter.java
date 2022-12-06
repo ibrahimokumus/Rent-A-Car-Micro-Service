@@ -2,6 +2,7 @@ package com.kodlamaoi.carFilterService.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,24 +17,34 @@ import lombok.NoArgsConstructor;
 public class CarFilter {
 	
 	
-		@Id
-		private String id;
+	@Id
+    private String id;
+    @Field(name = "carId")
+    private String carId;
 
-		private String carId;
+    @Field(name = "brandId")
+    private String brandId;
 
-		private double carDailyPrice;
+    @Field(name = "brandName")
+    private String brandName;
 
-		private int carModelYear;
+    @Field(name = "modelId")
+    private String modelId;
 
-		private String carPlate;
+    @Field(name = "modelName")
+    private String modelName;
 
-		private String carModelId;
+    @Field(name = "modelYear")
+    private int modelYear;
 
-		private String carModelName;
+    @Field(name = "dailyPrice")
+    private double dailyPrice;
 
-		private String carModelBrandId;
+    @Field(name = "plate")
+    private String plate;
 
-		private String carModelBrandName;
+    @Field(name = "state")
+    private int state;
 
 	
 }
