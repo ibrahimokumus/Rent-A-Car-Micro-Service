@@ -1,5 +1,0 @@
-package com.kodlamaoi.common.events;
-
-public class RentalUpdatedEvent {
-
-}

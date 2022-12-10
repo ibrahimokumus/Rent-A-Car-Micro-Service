@@ -1,8 +1,0 @@
-package com.kodlamaio.inventoryService.business.concretes;
-
-import com.kodlamaio.inventoryService.business.abstracts.BrandService;
-import com.kodlamaio.inventoryService.dataAccess.abstracts.BrandRepository;
-
-public class BrandManager implements BrandService{
-
-}

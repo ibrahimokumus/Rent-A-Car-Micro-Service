@@ -50,7 +50,7 @@ public class RentalController {
     }
 	
 	@PutMapping
-	public UpdateRentalResponse update(@RequestBody UpdateRentalRequest updateRentalRequest,String id) {
+	public UpdateRentalResponse update( @RequestBody UpdateRentalRequest updateRentalRequest,@PathVariable String id) {
 		return this.rentalService.update(updateRentalRequest,id);
 	}
 	

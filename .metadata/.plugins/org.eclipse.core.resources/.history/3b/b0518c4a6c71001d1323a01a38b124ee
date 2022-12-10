@@ -1,9 +1,0 @@
-package com.kodlamaoi.rentalService.business.abstracts;
-
-import com.kodlamaoi.rentalService.business.request.RentingCarRequest;
-import com.kodlamaoi.rentalService.business.response.RentingCarResponse;
-
-public interface RentalService {
-
-	RentingCarResponse rent(RentingCarRequest RentingCarRequest);
-}

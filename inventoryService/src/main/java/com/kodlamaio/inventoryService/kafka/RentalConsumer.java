@@ -7,32 +7,33 @@ import org.springframework.stereotype.Service;
 
 import com.kodlamaio.inventoryService.business.abstracts.CarService;
 import com.kodlamaoi.common.events.RentalCreatedEvent;
-import com.kodlamaoi.common.events.RentalUpdatedEvent;
+import com.kodlamaoi.common.events.RentalUpdatedCarEvent;
+
+
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class RentalConsumer {
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RentalConsumer.class);
-	CarService carService;
-    @KafkaListener(
-            topics = "${spring.kafka.topic.name}"
-            ,groupId = "${spring.kafka.consumer.group-id}"
-    )
-    public void consume(RentalCreatedEvent event){
-        LOGGER.info(String.format("Order event received in stock service => %s", event.toString()));
+	private CarService carService;
 
-       carService.changeCarState(event.getCarId());
-       LOGGER.info(event.getCarId()+"state change");
-        
-        // save the order event into the database
-    }
-    
-    public void consume(RentalUpdatedEvent event) {
-    	LOGGER.info(String.format("Order event received in stock service => %s", event.toString()));
-    	
-    	carService.changeCarState(event.getOldCarId()+"change to"+ event.getNewCarId());
-    	LOGGER.info(event.getOldCarId()+" change to "+event.getNewCarId());
-    	
-    }
-    
-    
+	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "rentalCreate")
+	public void consume(RentalCreatedEvent createdEvent) {
+		LOGGER.info(String.format("Order event received in stock service => %s", createdEvent.toString()));
+		carService.changeCarState(createdEvent.getCarId(), 2);
+		LOGGER.info("Car rented");
+		// save the order event into the database
+	}
+
+	@KafkaListener(topics = "${spring.kafka.topic.name}", groupId = "rentalUpdate")
+	public void consume(RentalUpdatedCarEvent RentalUpdatedCarEvent) {
+		LOGGER.info(String.format("Order event received in stock service => %s", RentalUpdatedCarEvent.toString()));
+		LOGGER.info("Car state changed");
+		carService.changeCarState(RentalUpdatedCarEvent.getNewCarId(), 2);
+		carService.changeCarState(RentalUpdatedCarEvent.getOldCarId(), 1);
+		// save the order event into the database
+	}
+
 }

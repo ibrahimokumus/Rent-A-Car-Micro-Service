@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 public class CarUpdatedEvent {
-	 private String carId;
+	 	private String carId;
 	    private String modelId;
 	    private String brandId;
 	    private String modelName;

@@ -2,13 +2,13 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\microService\apiGateWay"/>
 			<item value="C:\microService\config-server"/>
 			<item value="C:\microService\car-Filter-Service"/>
 			<item value="C:\microService\invoiceService"/>
 			<item value="C:\microService\paymentService"/>
 			<item value="C:\microService\rentalService"/>
 			<item value="C:\campSpring\rentACar"/>
-			<item value="C:\microService\apiGateWay"/>
 			<item value="C:\microService\common"/>
 			<item value="C:\Users\ibrah\OneDrive\Masaüstü\backend\kodlamaio"/>
 			<item value="C:\microService\inventoryService"/>

@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 import com.kodlamaoi.common.utilities.mapping.ModelMapperManager;
 import com.kodlamaoi.common.utilities.mapping.ModelMapperService;
@@ -28,10 +27,7 @@ public class CarFilterServiceApplication {
         return new ModelMapperManager(mapper);
     }
 
-    @Bean
-    public StringJsonMessageConverter jsonConverter() {
-        return new StringJsonMessageConverter();
-    }
+   
     
     
 }

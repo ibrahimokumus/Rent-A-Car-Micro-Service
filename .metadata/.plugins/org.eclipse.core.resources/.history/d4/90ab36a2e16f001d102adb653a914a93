@@ -1,9 +1,0 @@
-package com.kodlamaio.inventoryService.business.response.create;
-
-public class CreateCarResponse {
-	
-	private String id;
-	private double dailyPrice;
-	private int modelYear
-	private 
-}

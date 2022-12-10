@@ -1,5 +1,0 @@
-package com.kodlamaio.inventoryService.business.response.create;
-
-public class CreateModelResponse {
-
-}
